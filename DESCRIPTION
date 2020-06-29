@@ -28,7 +28,6 @@ Imports:
     httpuv (>= 1.5.0),
     crayon,
     promises (>= 1.1.0),
-    sodium,
     swagger (> 3.20.3)
 LazyData: TRUE
 ByteCompile: TRUE
