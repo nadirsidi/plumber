@@ -229,7 +229,6 @@ parse_multipart <- function(body, boundary){
 #" MULTI
 #' @rdname parsers
 #' @export
-#' @importFrom webutils parse_multipart
 parser_multi <- function() {
   function(value, content_type, ...) {
     if (!stri_detect_fixed(content_type, "boundary=", case_insensitive = TRUE))

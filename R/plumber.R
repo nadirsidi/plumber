@@ -185,7 +185,6 @@ hookable <- R6Class(
 #' @include plumb-block.R
 #' @include plumb-globals.R
 #' @export
-#' @import crayon
 plumber <- R6Class(
   "plumber",
   inherit = hookable,
