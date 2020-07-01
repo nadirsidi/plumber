@@ -510,18 +510,18 @@ plumber <- R6Class(
       if (!topLevel){
         cat("\u2502 ") # "| "
       }
-      cat(crayon::silver("# Plumber router with ", endCount, " endpoint", ifelse(endCount == 1, "", "s"),", ",
+      cat("# Plumber router with ", endCount, " endpoint", ifelse(endCount == 1, "", "s"),", ",
                          as.character(length(private$filts)), " filter", ifelse(length(private$filts) == 1, "", "s"),", and ",
-                         as.character(length(self$mounts)), " sub-router", ifelse(length(self$mounts) == 1, "", "s"),".\n", sep=""))
+                         as.character(length(self$mounts)), " sub-router", ifelse(length(self$mounts) == 1, "", "s"),".\n", sep="")
 
       if(topLevel){
-        cat(prefix, crayon::silver("# Call run() on this object to start the API.\n"), sep="")
+        cat(prefix, "# Call run() on this object to start the API.\n", sep="")
       }
 
       # Filters
       # TODO: scrub internal filters?
       for (f in private$filts){
-        cat(prefix, "\u251c\u2500\u2500", crayon::green("[", f$name, "]", sep=""), "\n", sep="") # "+--"
+        cat(prefix, "\u251c\u2500\u2500", "[", f$name, "]", sep="", "\n", sep="") # "+--"
       }
 
       printEndpoints <- function(prefix, name, nodes, isLast){
@@ -536,7 +536,7 @@ plumber <- R6Class(
         } else {
           cat("\u251c")  # "+"
         }
-        cat(crayon::blue("\u2500\u2500/", name, " (", verbs, ")\n", sep=""), sep="") # "+--"
+        cat("\u2500\u2500/", name, " (", verbs, ")\n", sep="", sep="") # "+--"
       }
 
       printNode <- function(node, name="", prefix="", isRoot=FALSE, isLast = FALSE){
