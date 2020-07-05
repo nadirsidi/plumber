@@ -34,7 +34,6 @@ runSteps <- function(initialValue, errorHandlerStep, steps) {
   )
 }
 
-#' @import promises
 runStepsUntil <- function(initialValue, errorHandlerStep, conditionFn, steps) {
   x <- initialValue
 

@@ -42,6 +42,7 @@ Suggests:
 Remotes:
     rstudio/swagger
 Collate:
+    'async.R'
     'content-types.R'
     'plumb-globals.R'
     'images.R'
