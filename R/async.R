@@ -156,8 +156,8 @@ withCurrentExecDomain <- function(req, res, expr) {
   execEnv$req <- req
   execEnv$res <- res
 
-  domain <- createVarPromiseDomain(.globals, currentExecName, execEnv)
-  promises::with_promise_domain(domain, expr)
+  # domain <- createVarPromiseDomain(.globals, currentExecName, execEnv)
+  # promises::with_promise_domain(domain, expr)
 }
 
 
@@ -165,36 +165,36 @@ withCurrentExecDomain <- function(req, res, expr) {
 # From Shiny.
 # Creates a promise domain that always ensures `env[[name]] == value` when
 # any code is being run in this domain.
-createVarPromiseDomain <- function(env, name, value) {
-  force(env)
-  force(name)
-  force(value)
-
-  promises::new_promise_domain(
-    wrapOnFulfilled = function(onFulfilled) {
-      function(...) {
-        orig <- env[[name]]
-        env[[name]] <- value
-        on.exit(env[[name]] <- orig)
-
-        onFulfilled(...)
-      }
-    },
-    wrapOnRejected = function(onRejected) {
-      function(...) {
-        orig <- env[[name]]
-        env[[name]] <- value
-        on.exit(env[[name]] <- orig)
-
-        onRejected(...)
-      }
-    },
-    wrapSync = function(expr) {
-      orig <- env[[name]]
-      env[[name]] <- value
-      on.exit(env[[name]] <- orig)
-
-      force(expr)
-    }
-  )
-}
+# createVarPromiseDomain <- function(env, name, value) {
+#   force(env)
+#   force(name)
+#   force(value)
+#
+#   promises::new_promise_domain(
+#     wrapOnFulfilled = function(onFulfilled) {
+#       function(...) {
+#         orig <- env[[name]]
+#         env[[name]] <- value
+#         on.exit(env[[name]] <- orig)
+#
+#         onFulfilled(...)
+#       }
+#     },
+#     wrapOnRejected = function(onRejected) {
+#       function(...) {
+#         orig <- env[[name]]
+#         env[[name]] <- value
+#         on.exit(env[[name]] <- orig)
+#
+#         onRejected(...)
+#       }
+#     },
+#     wrapSync = function(expr) {
+#       orig <- env[[name]]
+#       env[[name]] <- value
+#       on.exit(env[[name]] <- orig)
+#
+#       force(expr)
+#     }
+#   )
+# }
